@@ -2,7 +2,7 @@ import React from 'react';
 
 class Greet extends React.Component {
   state = {
-    message: 'webpack is awesome!',
+    message: 'webpack is awesome!!!',
     count: 0
   }
 
