@@ -13,7 +13,7 @@ module.exports = {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'images/[hash][ext][query]',
-    clean: true
+    clean: true,
   },
   optimization: {
     moduleIds: 'deterministic',
@@ -23,10 +23,10 @@ module.exports = {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all'
-        }
-      }
-    }
+          chunks: 'all',
+        },
+      },
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -41,9 +41,6 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
         },
       },
       {
@@ -57,7 +54,7 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: 'asset/resource',
-      }
+      },
     ],
-  }
+  },
 };
