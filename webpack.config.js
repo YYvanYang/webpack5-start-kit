@@ -1,5 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); // this should be used in production
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   mode: 'development',
@@ -33,7 +35,10 @@ module.exports = {
       template: './src/index.html',
       title: 'Output Management',
     }),
-  ],
+  ].concat(devMode ? [] : [new MiniCssExtractPlugin({
+    filename: '[name].[contenthash].css',
+    chunkFilename: '[id].[contenthash].css',
+  })]),
   module: {
     rules: [
       {
@@ -44,8 +49,13 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          // 'postcss-loader',
+          // 'sass-loader',
+        ],
       },
       {
         test: /\.(png|svg|jpg|gif)$/,

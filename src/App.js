@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css';
 
 function App() {
   const [message, setMessage] = useState();
@@ -12,7 +13,7 @@ function App() {
     <div>
       <h1>Hello World</h1>
       <button onClick={() => getMessage()}>Get Message</button>
-      {message}
+      <div className='container'>{message}</div>
     </div>
   );
 }
